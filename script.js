@@ -1,15 +1,9 @@
-/* global jQuery, SEOByRankMath, MBSEOByRankMath*/
-(function ( $, fields, document ) {
-	'use strict';
-
-	/**
-	 * The analyze module for SEO By Rank Math.
-	 */
+( function( $, fields, document ) {
 	var module = {
 		timeout: undefined,
 
 		// Load plugin and add hooks.
-		load: function () {
+		load: function() {
 			// Make sure clone fields are added.
 			getClonedFields();
 
@@ -19,14 +13,14 @@
 			fields.map( module.listenToField );
 
 			wp.hooks.addFilter( 'rank_math_content', 'rank-math', module.addContent );
-			
+
 			// Make the SEO By Rank Math analyzer works for existing content when page loads.
 			module.update();
 		},
 
 		// Add content to SEO By Rank Math Analyzer.
-		addContent: function ( content ) {
-			fields.map( function ( fieldId ) {
+		addContent: function( content ) {
+			fields.map( function( fieldId ) {
 				content += ' ' + getFieldContent( fieldId );
 			} );
 			return content;
@@ -45,9 +39,9 @@
 		},
 
 		// Update the SEO By Rank Math result. Use debounce technique, which triggers only when keys stop being pressed.
-		update: function () {
+		update: function() {
 			clearTimeout( module.timeout );
-			module.timeout = setTimeout( function () {
+			module.timeout = setTimeout( function() {
 				rankMathEditor.refresh( 'content' );
 			}, 250 );
 		},
@@ -67,7 +61,7 @@
 	 * Get clone fields.
 	 */
 	function getClonedFields() {
-		fields.map( function ( fieldId ) {
+		fields.map( function( fieldId ) {
 			var elements = document.querySelectorAll( '[id^=' + fieldId + '_]' );
 			Array.prototype.forEach.call( elements, function( element ) {
 				if ( -1 === fields.indexOf( element.id ) ) {
@@ -104,10 +98,10 @@
 	}
 
 	// Run on document ready.
-	$( function(){
+	$( function() {
 		setTimeout( function() {
 			$( module.load );
-		}, 500 )
+		}, 500 );
 	} );
 
-})( jQuery, MBSEOByRankMath, document );
+} )( jQuery, MBRankMath, document );
