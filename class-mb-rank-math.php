@@ -58,6 +58,6 @@ class MB_Rank_Math {
 	}
 
 	protected function is_analyzable( $field ) {
-		return ! in_array( $field['id'], $this->fields, true ) && ! empty( $field['rank_math_analysis'] );
+		return ! in_array( $field['id_attr'], $this->fields, true ) && ! empty( $field['rank_math_analysis'] );
 	}
 }
