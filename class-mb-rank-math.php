@@ -26,7 +26,7 @@ class MB_Rank_Math {
 		}
 
 		$this->add_fields( $meta_box->fields );
-		
+
 		if ( empty( $this->fields ) ) {
 			return;
 		}
@@ -60,6 +60,6 @@ class MB_Rank_Math {
 	}
 
 	protected function is_analyzable( $field ) {
-		return ! in_array( $field['id'], $this->fields, true ) && ! empty( $field['add_to_wpseo_analysis'] );
+		return ! in_array( $field['id'], $this->fields, true ) && ! empty( $field['rank_math_analysis'] );
 	}
 }
