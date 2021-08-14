@@ -26,6 +26,7 @@ class MB_Rank_Math {
 		}
 
 		$this->add_fields( $meta_box->fields );
+		
 		if ( empty( $this->fields ) ) {
 			return;
 		}
@@ -52,12 +53,13 @@ class MB_Rank_Math {
 			$this->add_fields( $field['fields'] );
 		}
 
+		// Add the single field.
 		if ( $this->is_analyzable( $field ) ) {
 			$this->fields[] = $field['id_attr'];
 		}
 	}
 
 	protected function is_analyzable( $field ) {
-		return ! in_array( $field['id_attr'], $this->fields, true ) && ! empty( $field['rank_math_analysis'] );
+		return ! in_array( $field['id'], $this->fields, true ) && ! empty( $field['add_to_wpseo_analysis'] );
 	}
 }

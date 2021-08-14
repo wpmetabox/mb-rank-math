@@ -7,8 +7,6 @@
 			// Make sure clone fields are added.
 			getClonedFields();
 
-			$( 'input[class^="rwmb"], textarea[class^="rwmb"], select[class^="rwmb"], button[class^="rwmb"]' ).each( module.addNewField );
-
 			// Update SEO By Rank Math analyzer when fields are updated.
 			fields.map( module.listenToField );
 
@@ -27,7 +25,7 @@
 		},
 
 		// Listen to field change and update SEO By Rank Math analyzer.
-		listenToField: function( fieldId ) {
+		listenToField: function( fieldId ) {console.log(fields);
 			if ( isEditor( fieldId ) ) {
 				tinymce.get( fieldId ).on( 'keyup', module.update );
 				return;
