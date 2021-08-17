@@ -1,31 +1,39 @@
-( function( $, fields, document ) {
+( ( $, fields, document ) => {
 	var module = {
 		timeout: undefined,
 
 		// Load plugin and add hooks.
-		load: function() {
+		load: () => {
+
 			// Make sure clone fields are added.
 			getClonedFields();
 
 			// Update SEO By Rank Math analyzer when fields are updated.
 			fields.map( module.listenToField );
 
+			wp.hooks.removeFilter( 'rank_math_content', 'rank-math' );
 			wp.hooks.addFilter( 'rank_math_content', 'rank-math', module.addContent );
 
 			// Make the SEO By Rank Math analyzer works for existing content when page loads.
 			module.update();
+
+			$( '.rwmb-field .rwmb-input').bind( 'DOMSubtreeModified', () => {
+				setTimeout( () => {
+					$( module.load );
+				}, 500 );
+			} );
 		},
 
 		// Add content to SEO By Rank Math Analyzer.
-		addContent: function( content ) {
+		addContent: ( content ) => {
 			fields.map( function( fieldId ) {
 				content += ' ' + getFieldContent( fieldId );
-			} );
+			} );console.log(content);
 			return content;
 		},
 
 		// Listen to field change and update SEO By Rank Math analyzer.
-		listenToField: function( fieldId ) {console.log(fields);
+		listenToField: ( fieldId ) => {
 			if ( isEditor( fieldId ) ) {
 				tinymce.get( fieldId ).on( 'keyup', module.update );
 				return;
@@ -37,9 +45,9 @@
 		},
 
 		// Update the SEO By Rank Math result. Use debounce technique, which triggers only when keys stop being pressed.
-		update: function() {
+		update: () => {
 			clearTimeout( module.timeout );
-			module.timeout = setTimeout( function() {
+			module.timeout = setTimeout( () => {
 				rankMathEditor.refresh( 'content' );
 			}, 250 );
 		},
@@ -47,7 +55,7 @@
 		/**
 		 * Add new cloned field to the list and listen to its change.
 		 */
-		addNewField: function() {
+		addNewField: () => {
 			if ( -1 === fields.indexOf( this.id ) ) {
 				fields.push( this.id );
 				module.listenToField( this.id );
@@ -58,7 +66,7 @@
 	/**
 	 * Get clone fields.
 	 */
-	function getClonedFields() {
+	getClonedFields = () => {
 		fields.map( function( fieldId ) {
 			var elements = document.querySelectorAll( '[id^=' + fieldId + '_]' );
 			Array.prototype.forEach.call( elements, function( element ) {
@@ -76,7 +84,7 @@
 	 * @param fieldId The field ID
 	 * @returns string
 	 */
-	function getFieldContent( fieldId ) {
+	getFieldContent = ( fieldId ) => {
 		var field = document.getElementById( fieldId );
 		if ( field ) {
 			var content = isEditor( fieldId ) ? tinymce.get( fieldId ).getContent() : field.value;
@@ -91,15 +99,16 @@
 	 * @param fieldId The field ID
 	 * @returns boolean
 	 */
-	function isEditor( fieldId ) {
+	isEditor = ( fieldId ) => {
 		return typeof tinymce !== 'undefined' && tinymce.get( fieldId ) !== null;
 	}
 
 	// Run on document ready.
 	$( function() {
-		setTimeout( function() {
+		setTimeout( () => {
 			$( module.load );
 		}, 500 );
 	} );
+
 
 } )( jQuery, MBRankMath, document );
