@@ -35,7 +35,7 @@
 		},
 		// Add content to SEO By Rank Math Analyzer.
 		addContent: ( content ) => {
-			fields.map( function( fieldId ) {
+			fields.map( ( fieldId ) => {
 				content += ' ' + getFieldContent( fieldId );
 			} );
 			return content;
@@ -76,9 +76,9 @@
 	 * Get clone fields.
 	 */
 	getClonedFields = () => {
-		fields.map( function( fieldId ) {
+		fields.map( ( fieldId ) => {
 			var elements = document.querySelectorAll( '[id^=' + fieldId + '_]' );
-			Array.prototype.forEach.call( elements, function( element ) {
+			Array.prototype.forEach.call( elements, ( element ) => {
 				if ( -1 === fields.indexOf( element.id ) ) {
 					fields.push( element.id );
 				}
