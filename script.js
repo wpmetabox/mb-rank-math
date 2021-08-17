@@ -20,6 +20,7 @@
 
 		onClone: () => {
 			setTimeout( () => {
+
 				// Make sure clone fields are added.
 				getClonedFields();
 
@@ -31,6 +32,7 @@
 
 				// Make the SEO By Rank Math analyzer works for existing content when page loads.
 				module.update();
+
 			}, 500 );
 		},
 		// Add content to SEO By Rank Math Analyzer.
