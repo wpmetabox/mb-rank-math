@@ -1,4 +1,4 @@
-( ( $, fields, document ) => {
+( ( $, fields, rwmb, document ) => {
 	var module = {
 		timeout: undefined,
 
@@ -11,24 +11,33 @@
 			// Update SEO By Rank Math analyzer when fields are updated.
 			fields.map( module.listenToField );
 
-			wp.hooks.removeFilter( 'rank_math_content', 'rank-math' );
 			wp.hooks.addFilter( 'rank_math_content', 'rank-math', module.addContent );
 
 			// Make the SEO By Rank Math analyzer works for existing content when page loads.
 			module.update();
 
-			$( '.rwmb-field .rwmb-input').bind( 'DOMSubtreeModified', () => {
-				setTimeout( () => {
-					$( module.load );
-				}, 500 );
-			} );
 		},
 
+		onClone: () => {
+			setTimeout( () => {
+				// Make sure clone fields are added.
+				getClonedFields();
+
+				// Update SEO By Rank Math analyzer when fields are updated.
+				fields.map( module.listenToField );
+
+				wp.hooks.removeFilter( 'rank_math_content', 'rank-math' );
+				wp.hooks.addFilter( 'rank_math_content', 'rank-math', module.addContent );
+
+				// Make the SEO By Rank Math analyzer works for existing content when page loads.
+				module.update();
+			}, 500 );
+		},
 		// Add content to SEO By Rank Math Analyzer.
 		addContent: ( content ) => {
 			fields.map( function( fieldId ) {
 				content += ' ' + getFieldContent( fieldId );
-			} );console.log(content);
+			} );
 			return content;
 		},
 
@@ -104,11 +113,14 @@
 	}
 
 	// Run on document ready.
-	$( function() {
+	$( () => {
 		setTimeout( () => {
 			$( module.load );
 		}, 500 );
 	} );
 
+	rwmb.$document
+		.on( 'click', '.add-clone', module.onClone )
+		.on( 'click', '.remove-clone', module.onClone );
 
-} )( jQuery, MBRankMath, document );
+} )( jQuery, MBRankMath, rwmb, document );

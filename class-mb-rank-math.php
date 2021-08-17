@@ -30,7 +30,7 @@ class MB_Rank_Math {
 		if ( empty( $this->fields ) ) {
 			return;
 		}
-		wp_enqueue_script( 'mb-rank-math', $url . 'script.js', array( 'jquery', 'wp-hooks', 'rank-math-analyzer' ), '1.0.0', true );
+		wp_enqueue_script( 'mb-rank-math', $url . 'script.js', array( 'jquery', 'rwmb', 'rwmb-clone', 'wp-hooks', 'rank-math-analyzer' ), '1.0.0', true );
 
 		// Send list of fields to JavaScript.
 		wp_localize_script( 'mb-rank-math', 'MBRankMath', $this->fields );
