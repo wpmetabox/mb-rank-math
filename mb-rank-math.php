@@ -8,7 +8,7 @@
  * Author URI:  https://metabox.io
  */
 
-if ( ! class_exists( 'MB_Rank_Math' ) ) {
+if ( ! class_exists( 'MB_Rank_Math' ) && is_plugin_active( 'seo-by-rank-math/rank-math.php' )) {
 	require_once __DIR__ . '/class-mb-rank-math.php';
 	$mb_rank_math = new MB_Rank_Math;
 	add_action( 'rwmb_enqueue_scripts', [ $mb_rank_math, 'enqueue' ] );
