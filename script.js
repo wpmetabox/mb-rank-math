@@ -27,12 +27,6 @@
 				// Update SEO By Rank Math analyzer when fields are updated.
 				fields.map( module.listenToField );
 
-				wp.hooks.removeFilter( 'rank_math_content', 'rank-math' );
-				wp.hooks.addFilter( 'rank_math_content', 'rank-math', module.addContent );
-
-				// Make the SEO By Rank Math analyzer works for existing content when page loads.
-				module.update();
-
 			}, 500 );
 		},
 		// Add content to SEO By Rank Math Analyzer.
