@@ -7,7 +7,7 @@
  * Version:     1.0.0
  * Author URI:  https://metabox.io
  */
-add_action( 'init', 'load_mb_rank_math');
+add_action( 'admin_init', 'load_mb_rank_math');
 function load_mb_rank_math(){
 	if ( ! class_exists( 'MB_Rank_Math' ) && is_plugin_active( 'seo-by-rank-math/rank-math.php' ) ){
 		require_once __DIR__ . '/class-mb-rank-math.php';
