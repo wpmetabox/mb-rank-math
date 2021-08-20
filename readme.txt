@@ -4,7 +4,7 @@ Donate link: https://metabox.io/pricing/
 Tags: meta-box, custom-fields, custom-field, meta, meta-boxes, rank-math, seo, seo-analysis, content-analysis
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-2.0
 
 Add content of Meta Box custom fields to Rank Math Content Analysis.
@@ -45,7 +45,11 @@ To make a field analyzable, add the following parameter to fields:
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 - 2021-08-20 =
+
+- Fix script not enqueued for post types with no cloneable fields.
+
+= 1.0.0 - 2021-08-20 =
 
 - First release
 

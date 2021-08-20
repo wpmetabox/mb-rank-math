@@ -13,9 +13,6 @@ class MB_Rank_Math {
 	 * @param RW_Meta_Box $meta_box The meta box object.
 	 */
 	public function enqueue( RW_Meta_Box $meta_box) {
-		// Use helper function to get correct URL to current folder, which can be used in themes/plugins.
-		list( , $url ) = RWMB_Loader::get_path( dirname( __FILE__ ) );
-
 		// Only for posts.
 		if ( ! function_exists( 'get_current_screen' ) ) {
 			return;
@@ -30,6 +27,9 @@ class MB_Rank_Math {
 		if ( empty( $this->fields ) ) {
 			return;
 		}
+
+		// Use helper function to get correct URL to current folder, which can be used in themes/plugins.
+		list( , $url ) = RWMB_Loader::get_path( dirname( __FILE__ ) );
 		wp_enqueue_script( 'mb-rank-math', $url . 'script.js', array( 'jquery', 'rwmb', 'wp-hooks', 'rank-math-analyzer' ), '1.0.0', true );
 
 		// Send list of fields to JavaScript.
