@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+
+/.git
+/.github
+/vendor
+
+.distignore
+.gitattributes
+
+composer.json
+composer.lock
+
+readme.md
