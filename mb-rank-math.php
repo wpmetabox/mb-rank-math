@@ -6,6 +6,7 @@
  * Author:      MetaBox.io
  * Version:     1.0.1
  * Author URI:  https://metabox.io
+ * License:     GPL-2
  */
 
 if ( ! function_exists( 'mb_rank_math_load' ) ) {

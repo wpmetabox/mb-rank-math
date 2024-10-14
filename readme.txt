@@ -1,9 +1,9 @@
 === MB Rank Math ===
 Contributors: metabox, rilwis, elightup, anhdoanmis
 Donate link: https://metabox.io/pricing/
-Tags: meta-box, custom-fields, custom-field, meta, meta-boxes, rank-math, seo, seo-analysis, content-analysis
+Tags: meta box, custom fields, rank math, seo
 Requires at least: 5.0
-Tested up to: 5.8
+Tested up to: 6.6.2
 Stable tag: 1.0.1
 License: GPL-2.0
 
