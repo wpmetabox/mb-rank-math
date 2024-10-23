@@ -9,6 +9,11 @@
  * License:     GPL-2
  */
 
+// Prevent loading this file directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	return;
+}
+
 if ( ! function_exists( 'mb_rank_math_load' ) ) {
 	add_action( 'admin_init', 'mb_rank_math_load' );
 
