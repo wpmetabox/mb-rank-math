@@ -3,8 +3,8 @@ Contributors: metabox, rilwis, elightup, anhdoanmis
 Donate link: https://metabox.io/pricing/
 Tags: meta box, custom fields, rank math, seo
 Requires at least: 5.0
-Tested up to: 6.6.2
-Stable tag: 1.0.3
+Tested up to: 6.7.2
+Stable tag: 1.0.4
 License: GPL-2.0
 
 Add content of Meta Box custom fields to Rank Math Content Analysis.
@@ -47,6 +47,9 @@ To make a field analyzable, add the following parameter to fields:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.0.4 - 2025-04-01 =
+Update supported version
 
 = 1.0.3 - 2024-11-01 =
 Fix direct file access
